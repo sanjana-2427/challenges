@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Report Dashboard</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h1 { background: #007acc; color: white; padding: 10px; text-align: center; }
+    input, button { padding: 5px; margin-top: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+
+  <h1>Student Report Dashboard</h1>
+
+  <input id="name" placeholder="Student Name">
+  <input id="grade" placeholder="Grade" type="number" min="0" max="100">
+  <button onclick="addStudent()">Add</button>
+
+  <table id="report">
+    <thead>
+      <tr><th>Name</th><th>Grade</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function addStudent() {
+      var name = document.getElementById('name').value.trim();
+      var grade = document.getElementById('grade').value.trim();
+
+      if(name && grade !== '') {
+        var tbody = document.getElementById('report').getElementsByTagName('tbody')[0];
+        var row = document.createElement('tr');
+        var cellName = document.createElement('td');
+        var cellGrade = document.createElement('td');
+
+        cellName.textContent = name;
+        cellGrade.textContent = grade;
+
+        row.appendChild(cellName);
+        row.appendChild(cellGrade);
+        tbody.appendChild(row);
+
+        document.getElementById('name').value = '';
+        document.getElementById('grade').value = '';
+      } else {
+        alert('Please enter both name and grade');
+      }
+    }
+  </script>
+
+</body>
+</html>
